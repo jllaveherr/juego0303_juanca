@@ -1,5 +1,4 @@
 import pygame
-from random import randint
 from ladrillo import Brick
 
 # Setup del juego
@@ -23,8 +22,8 @@ fondo = pygame.transform.scale(fondo, (1200, 800))
 ball = pygame.image.load("balon_de_oro.png")
 ball = pygame.transform.scale(ball, (50, 50))
 ballrect = ball.get_rect()
-speed = [randint(2,5),randint(2,5)]
-ballrect.move_ip(0,0)
+speed = [2, 5]
+ballrect.move_ip(0, 0)
 
 # Bases de la barra
 barra = pygame.image.load("CR7_siiii.png")
@@ -77,17 +76,11 @@ while jugando:
         speed[1] = -speed[1]
 
 
-    # Colision con Rocas
+    # Colision con barra
     if ballrect.colliderect(brick.rect):
         speed[1] = -speed[1]
 
-    # control
-    if keys[pygame.K_LEFT] and barrarect.left > 0:
-        barrarect.left -= barraSpeed
-    if keys[pygame.K_RIGHT] and barrarect.right < 1200:
-        barrarect.right += barraSpeed
-
-    ventana.blit(fondo, (0, 0))
+    ventana.blit(fondo, (200, 200))
     ventana.blit(brick.img, brick.rect)
     ventana.blit(ball, ballrect)
     ventana.blit(barra, barrarect)
