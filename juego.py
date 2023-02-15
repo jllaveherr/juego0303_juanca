@@ -23,12 +23,12 @@ ball = pygame.image.load("balon_de_oro.png")
 ball = pygame.transform.scale(ball, (50, 50))
 ballrect = ball.get_rect()
 speed = [2, 5]
-ballrect.move_ip(0, 0)
+ballrect.move_ip(640, 400)
 
 # Bases de la barra
 barra = pygame.image.load("CR7_siiii.png")
 barrarect = barra.get_rect()
-barrarect.move_ip(840,750)
+barrarect.move_ip(700, 780)
 fuente = pygame.font.Font(None, 40)
 barraSpeed = 3
 
@@ -39,25 +39,32 @@ texto_x = ventana.get_width() / 2 - texto_rect.width / 2
 texto_y = ventana.get_height() / 2 - texto_rect.height / 2
 
 lista_ladrillos = []
-for posx in range(14):
-    for posy in range(3):
+for posx in range(40):
+    for posy in range(5):
         lista_ladrillos.append(Brick(45*posx, 45*posy, "barsaa.png"))
 
 # Funciones del juego
 jugando = True
 while jugando:
+    ventana.blit(fondo, (0, 0))
+    ventana.blit(ball, ballrect)
+    ventana.blit(barra, barrarect)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             jugando = False
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]:
+    if keys[pygame.K_LEFT] and barrarect.left > 0:
         barrarect = barrarect.move(-5,0)
-    if keys[pygame.K_RIGHT]:
+    if keys[pygame.K_RIGHT]and barrarect.right < 1200:
         barrarect = barrarect.move(5,0)
 
 
     for brick in lista_ladrillos:
         ventana.blit(brick.img,brick.rect)
+        if ballrect.colliderect(brick.rect):
+            lista_ladrillos.remove(brick)
+            speed[1] = -speed[1]
 
     # Velocidad al colisionar con la barra
     if barrarect.colliderect(ballrect):
@@ -75,15 +82,6 @@ while jugando:
     if ballrect.top < 0:
         speed[1] = -speed[1]
 
-
-    # Colision con barra
-    if ballrect.colliderect(brick.rect):
-        speed[1] = -speed[1]
-
-    ventana.blit(fondo, (200, 200))
-    ventana.blit(brick.img, brick.rect)
-    ventana.blit(ball, ballrect)
-    ventana.blit(barra, barrarect)
 
     # Pantalla de derrota
     if ballrect.bottom > 1000:
