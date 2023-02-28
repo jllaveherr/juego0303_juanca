@@ -3,7 +3,7 @@ from ladrillo import Brick
 
 # Setup del juego
 pygame.init()
-ventana = pygame.display.set_mode((1200, 800))
+ventana = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("Juan Carlos")
 
 
@@ -15,11 +15,11 @@ pygame.mixer.Sound.play(musica_fondo)
 
 # Fondo de pantalla
 fondo = pygame.image.load("messi.png")
-fondo = pygame.transform.scale(fondo, (1200, 800))
+fondo = pygame.transform.scale(fondo, (800, 600))
 
 
 # Bases de la pelota
-ball = pygame.image.load("balon_de_oro.png")
+ball = pygame.image.load("balondeoro.png")
 ball = pygame.transform.scale(ball, (50, 50))
 ballrect = ball.get_rect()
 speed = [2, 5]
@@ -28,7 +28,7 @@ ballrect.move_ip(640, 400)
 # Bases de la barra
 barra = pygame.image.load("CR7_siiii.png")
 barrarect = barra.get_rect()
-barrarect.move_ip(700, 780)
+barrarect.move_ip(450,580)
 fuente = pygame.font.Font(None, 40)
 barraSpeed = 3
 
@@ -38,10 +38,12 @@ texto_rect = texto.get_rect()
 texto_x = ventana.get_width() / 2 - texto_rect.width / 2
 texto_y = ventana.get_height() / 2 - texto_rect.height / 2
 
+#añadir ladrillos
+
 lista_ladrillos = []
-for posx in range(40):
+for posx in range(20):
     for posy in range(5):
-        lista_ladrillos.append(Brick(45*posx, 45*posy, "barsaa.png"))
+        lista_ladrillos.append(Brick(45*posx, 45*posy, "barsa.png"))
 
 # Funciones del juego
 jugando = True

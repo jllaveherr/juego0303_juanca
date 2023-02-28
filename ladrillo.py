@@ -1,7 +1,5 @@
 import pygame
-
 class Brick:
-
    def __init__ (self, posx, posy, img):
        self.__posx = posx
        self.__posy = posy
