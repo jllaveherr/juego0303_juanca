@@ -19,11 +19,11 @@ fondo = pygame.transform.scale(fondo, (800, 600))
 
 
 # Bases de la pelota
-ball = pygame.image.load("balondeoro.png")
+ball = pygame.image.load("pelota.png")
 ball = pygame.transform.scale(ball, (50, 50))
 ballrect = ball.get_rect()
 speed = [2, 5]
-ballrect.move_ip(640, 400)
+ballrect.move_ip(400, 400)
 
 # Bases de la barra
 barra = pygame.image.load("CR7_siiii.png")
@@ -42,7 +42,7 @@ texto_y = ventana.get_height() / 2 - texto_rect.height / 2
 
 lista_ladrillos = []
 for posx in range(20):
-    for posy in range(5):
+    for posy in range(3):
         lista_ladrillos.append(Brick(45*posx, 45*posy, "barsa.png"))
 
 # Funciones del juego
@@ -58,7 +58,7 @@ while jugando:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT] and barrarect.left > 0:
         barrarect = barrarect.move(-5,0)
-    if keys[pygame.K_RIGHT]and barrarect.right < 1200:
+    if keys[pygame.K_RIGHT]and barrarect.right < 800:
         barrarect = barrarect.move(5,0)
 
 
